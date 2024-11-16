@@ -2,6 +2,7 @@ import { FC, useContext } from 'react';
 import { Context } from '../App';
 import Table, { TableProps } from './Table';
 import { createBooking } from '../services/BookingService';
+import { TailSpin } from 'react-loader-spinner';
 
 const TableList: FC = () => {
   const {
@@ -40,14 +41,24 @@ const TableList: FC = () => {
   return (
     <div className="table-list">
       <h1>Choose a table from the available tables</h1>
-      {availableTables.length ? (
-        availableTables.map((table: TableProps) => (
-          <div onClick={handleClik(table)} key={table.tableNumber}>
+
+      {!availableTables && (
+        <div className="spinner">
+          <TailSpin />
+        </div>
+      )}
+      {availableTables?.length != 0 ? (
+        availableTables?.map((table: TableProps) => (
+          <div
+            className="table-container"
+            onClick={handleClik(table)}
+            key={table.tableNumber}
+          >
             <Table tableNumber={table.tableNumber} seats={table.seats} />
           </div>
         ))
       ) : (
-        <p>No available tables at this time :(</p>
+        <p className="text">No available tables at this time :(</p>
       )}
       <button onClick={handleBack}>Back</button>
     </div>

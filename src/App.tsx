@@ -2,7 +2,6 @@ import { createContext, useState } from 'react';
 import './App.css';
 import BookingForm from './components/BookingForm';
 import TableList from './components/TableList';
-// import { getAvailableTables } from './services/BookingService';
 import { TableProps } from './components/Table';
 
 export interface ContextType {
@@ -16,8 +15,8 @@ export interface ContextType {
   setNumberOfPeople: React.Dispatch<React.SetStateAction<number | undefined>>;
   startBookingDateTime: string;
   setStartBookingDateTime: React.Dispatch<React.SetStateAction<string>>;
-  availableTables: TableProps[];
-  setAvailableTables: React.Dispatch<React.SetStateAction<TableProps[]>>;
+  availableTables: TableProps[] | null;
+  setAvailableTables: React.Dispatch<React.SetStateAction<TableProps[] | null>>;
   next: boolean;
   setNext: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -34,7 +33,9 @@ function App() {
   const [startBookingDateTime, setStartBookingDateTime] = useState(
     new Date().toISOString()
   );
-  const [availableTables, setAvailableTables] = useState<TableProps[]>([]);
+  const [availableTables, setAvailableTables] = useState<TableProps[] | null>(
+    null
+  );
   const [next, setNext] = useState<boolean>(false);
 
   return (

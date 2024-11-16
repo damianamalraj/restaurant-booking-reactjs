@@ -34,15 +34,22 @@ form {
 }
 
 .table-list {
-  min-height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 350px;
+  width: 100%;
   align-items: center;
+  position: relative;
 }
 
 .table-list button {
   align-self: self-start;
+}
+
+.table-container {
+  display: flex;
+  width: 100%;
 }
 
 .table {
